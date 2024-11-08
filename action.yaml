@@ -5,6 +5,8 @@ inputs:
   who-to-greet:
     default: "world"
     required: false
+outputs:
+  greeting: ${{ steps.greet.outputs.message }}
 runs:
   using: composite
   steps:
@@ -13,4 +15,4 @@ runs:
       uses: docker://golang:1.20.3-alpine3.17
       shell: sh
       run: |
-        echo "Hello ${{ inputs.who-to-greet }}" > "$CLOUDBEES_OUTPUTS/greeting"
+        echo "Hello ${{ inputs.who-to-greet }}" > "$CLOUDBEES_OUTPUTS/message"
